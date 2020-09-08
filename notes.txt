@@ -1,0 +1,48 @@
+Flask is having mainly 2 components
+1. Jinja 2 (for template)
+2. Werkzeug  (HTTP and routing)
+
+3. development server and debugger
+4. unit testing support
+
+it usage Model-template-view pattern
+
+
+export FLASK_APP=flashcards.py
+export FLASK_ENV=development
+flask run
+flask run --host=0.0.0.0
+http://127.0.0.1:5000/
+
+
+pip3 install -r requirement.txt
+sudo apt-get install gunicorn3
+gunicorn3 -D flashcards:app
+
+-D option is for run in background
+gunicorn runs on port 8000 on non-root users. but external world sends request on port 80. either run as root user or use ngnix. running as root user is bad as its not safe.
+
+ngnix:
+it can listen in port 80 and send request to gunicorn on 8000
+also it guard server from "denial of service" attack
+
+
+----
+cd /etc/ngnix/static-avialable/
+replace default file code with below code.
+https://docs.gunicorn.org/en/latest/deploy.html
+
+sudo service ngnix restart
+
+----
+
+
+app.run(port=5000)
+
+for REST, we should have "
+response= Response("", 201, mimetype="application/json")
+response.header['Location'] = "/books/" + str(new_book[isbn]) ----- location of newly created object
+return response
+
+
+
